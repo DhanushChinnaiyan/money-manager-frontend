@@ -1,38 +1,56 @@
-.App {
-  text-align: center;
+
+.base{
+  
+  display: flex;
+  flex-direction: column; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.homeBtns{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.inputfield{
+  /* border: 1px solid rgb(78, 78, 78); */
+  border-radius: 10px;
+  padding: 10px;
+  margin: 20px;
+  width:calc(200px + 40vw);
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.inputarea,.btn{
+  /* border: 2px solid black; */
+  display: flex;
+  justify-content: center;
 }
 
-.App-link {
-  color: #61dafb;
+.popup{
+  /* border: 1px solid black; */
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.historyCard{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
 }
+
+.expensecard{
+/* border: 1px solid black; */
+margin: 20px ;
+padding: 20px;
+border-radius: 10px;
+box-shadow: inset 0 0 10px grey;
+}
+
+.expensecardbody>div{
+  /* border: 1px solid black; */
+ text-align: center;
+}
+
