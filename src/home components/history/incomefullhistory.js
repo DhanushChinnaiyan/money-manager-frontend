@@ -16,7 +16,7 @@ const IncomeFullHistory = ({ incomesData}) => {
     <Base>
    
     <div className="incomehistoryCard">
-      <Card>
+      <Card >
         <CardContent>
           <Typography gutterBottom variant="h5" component="div" style={{textAlign:"center"}}>
             INCOMES HISTORY
@@ -26,15 +26,15 @@ const IncomeFullHistory = ({ incomesData}) => {
             return (
               <CardActions
                 key={index}
-                sx={{ display: "flex", justifyContent: "center" }}
+                
               >
                 <Typography >
                  {index+1}. INCOME : {item.income} .RS
                 </Typography>
-                <Typography color="grey" style={{fontSize:"14px"}}>
+                <Typography color="grey" style={{fontSize:"14px" ,marginLeft:"calc(10px + 3vw)"}}>
                  {item.day + "/" + item.month + "/" + item.year}
                 </Typography>
-                <TimeAgo style={{fontSize:"calc(7px + 0.5vw)",color:"grey",marginLeft:"15px"}} datetime={item.date} locale="vi" />
+                <TimeAgo style={{fontSize:"calc(7px + 0.5vw)",color:"grey",marginLeft:"calc(10px + 3vw)"}} datetime={item.date} locale="vi" />
                 
               </CardActions>
             );
