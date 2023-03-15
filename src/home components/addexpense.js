@@ -47,7 +47,7 @@ const Addexpense = ({setAddBtn,setExpensepopup, setAddexpense,expensesData,setEx
 
         try {
      
-            const response = await fetch("http://localhost:9000/expense/add",{
+            const response = await fetch("https://money-manager-backend-git-master-dhanushchinnaiyan.vercel.app/expense/add",{
                 method:"POST",
                 body:JSON.stringify(newexpense),
                 headers : {

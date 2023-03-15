@@ -37,7 +37,7 @@ const AddIncome = ({setAddBtn,setNewincome, setAddincome,setIncomepopup,incomesD
 
         try {
      
-            const response = await fetch("http://localhost:9000/income/add",{
+            const response = await fetch("https://money-manager-backend-git-master-dhanushchinnaiyan.vercel.app/income/add",{
                 method:"POST",
                 body:JSON.stringify(newincome),
                 headers : {
