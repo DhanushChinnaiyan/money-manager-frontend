@@ -67,7 +67,7 @@ const WeekComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
             {item.month === month && day < item.day && <Weekincomecardcomponent 
             
             income = {item.income}
-            date={item.date}
+            date={item.day + "/" + item.month + "/" +item.year}
             />}
           </div>
         );
@@ -94,7 +94,7 @@ const WeekComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
               parseInt(item.medical) +
               parseInt(item.others)
 }
-date = {item.date}
+date={item.day + "/" + item.month + "/" +item.year}
             />}
           </div>
         );

@@ -8,7 +8,7 @@ import FullExpensesHistory from './home components/history/expensefullhistory';
 
 function App() {
    const dates = new Date();
-   console.log(dates.getHours())
+   console.log(dates.getHours(),dates.getMinutes(),dates.getSeconds())
   const[expensesData,setExpensesData]=useState([])
   const[incomesData,setIncomesData]=useState([])
   const [dummy,setDummy] = useState(false)
