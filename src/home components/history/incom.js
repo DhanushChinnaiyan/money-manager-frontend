@@ -30,7 +30,7 @@ const IncomeHistory = ({dummy,setDummy, incomesData, expensesData }) => {
   // console.log(historyincomevalue)
   return (
     <div className="historyCard">
-      <Card sx={{ maxWidth: 280 }}>
+      <Card >
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
             INCOMES HISTORY
@@ -56,7 +56,7 @@ const IncomeHistory = ({dummy,setDummy, incomesData, expensesData }) => {
         </CardActions>
       </Card>
 
-      <Card sx={{ maxWidth: 280 }}>
+      <Card >
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
             EXPENSES HISTORY
