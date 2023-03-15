@@ -11,25 +11,23 @@ const WeekComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
   }, []);
   console.log(incomesData)
   const dates = new Date();
-  const day = dates.getDate();
+  const day = dates.getDate()-7;
   const month = dates.getMonth() + 1;
   console.log(month)
-  console.log(day)
+  console.log("day",day)
   let totalincome = 0;
   let totalexpense = 0;
   // console.log(emptyArr)
- let totalvalue,totalexpensevalue;
-  incomesData.length<7 ? (totalvalue = 0) : (totalvalue = incomesData.length-7)
- for(let i =incomesData.length-1;i>=totalvalue;i--){
-    if(incomesData[i].day <= day && incomesData[i].day >= day-7 && incomesData[i].month === month){
-  totalincome=totalincome+parseInt(incomesData[i].income)
+
+ for(let i =0;i<incomesData.length;i++){
+    if(incomesData[i].month === month && day < incomesData[i].day){
+       totalincome=totalincome+parseInt(incomesData[i].income)
     }
  }
  
- expensesData.length<7 ? (totalexpensevalue = 0) : (totalexpensevalue = expensesData.length-7)
 
- for (let i =expensesData.length-1;i>=totalexpensevalue;i--) {
-    if(incomesData[i].day <= day && incomesData[i].day >= day-7 && incomesData[i].month === month){
+ for (let i =0;i<expensesData.length;i++) {
+    if(expensesData[i].month === month && day < expensesData[i].day){
    let total =
      parseInt(expensesData[i].fuel) +
      parseInt(expensesData[i].movie) +
@@ -41,6 +39,7 @@ const WeekComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
    totalexpense = totalexpense + parseInt(total);
     }
  }
+
 
 
   return (
@@ -65,7 +64,7 @@ const WeekComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
         
         return (
           <div key={id} style={{ display: "flex", justifyContent: "center" }}>
-            {item.day <= day && item.day >= day-7 && item.month === month &&<Weekincomecardcomponent 
+            {item.month === month && day < item.day && <Weekincomecardcomponent 
             
             income = {item.income}
             date={item.date}
@@ -86,7 +85,7 @@ const WeekComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
       {expensesData.map((item, id) => {
         return (
           <div key={id} style={{ display: "flex", justifyContent: "center" }}>
-            {item.day <= day && item.day >= day-7 && item.month === month && <Weekexpensecardcomponent 
+            {item.month === month && day < item.day && <Weekexpensecardcomponent 
             
             Total={ parseInt(item.fuel) +
               parseInt(item.movie) +
