@@ -16,7 +16,7 @@ function App() {
   useEffect(()=>{
        const getincome = async() => {
         try {
-          const response =await fetch ("http://localhost:9000/income" , {
+          const response =await fetch ("https://money-manager-backend-c6qn0shrs-dhanushchinnaiyan.vercel.app/income" , {
             method:"GET"
           });
           const data =await response.json();
@@ -30,7 +30,7 @@ function App() {
 
        const getexpense = async() => {
         try {
-          const response =await fetch ("http://localhost:9000/expense" , {
+          const response =await fetch ("https://money-manager-backend-c6qn0shrs-dhanushchinnaiyan.vercel.app/expense" , {
             method:"GET"
           });
           const data =await response.json();
