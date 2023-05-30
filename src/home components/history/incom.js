@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
@@ -7,11 +7,8 @@ import { Card } from "@mui/material";
 import TimeAgo from "timeago-react";
 import { useHistory } from "react-router-dom";
 
-const IncomeHistory = ({dummy,setDummy, incomesData, expensesData }) => {
 
-  useEffect(()=>{
-    setDummy(!dummy)
-  },[])
+const IncomeHistory = ({incomesData, expensesData }) => {
 
   const history = useHistory()
   let incomevalue;
@@ -46,7 +43,6 @@ const IncomeHistory = ({dummy,setDummy, incomesData, expensesData }) => {
                   Income : {item.income} .RS
                 </Typography>
                 <TimeAgo style={{fontSize:"calc(7px + 0.3vw)",color:"grey",marginLeft:"7px"}} datetime={item.date} locale="vi" />
-               
               </CardActions>
             );
           })}

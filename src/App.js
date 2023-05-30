@@ -2,9 +2,12 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import HomeComponents from './home';
-import { Route,Switch,Redirect } from 'react-router-dom';
+import { Route,Switch } from 'react-router-dom';
 import IncomeFullHistory from './home components/history/incomefullhistory';
 import FullExpensesHistory from './home components/history/expensefullhistory';
+import Signup from './User Entry/Signup.jsx';
+import Login from './User Entry/Login.jsx';
+import ForgotPassword from './User Entry/Forgot-Password.jsx';
 
 function App() {
    const dates = new Date();
@@ -67,6 +70,15 @@ function App() {
            <FullExpensesHistory
             expensesData={expensesData}
            />
+        </Route>
+        <Route path='/signup'>
+             <Signup/>
+        </Route>
+        <Route path='/login'>
+          <Login/>
+        </Route>
+        <Route path='/forgotpassword'>
+          <ForgotPassword/>
         </Route>
         </Switch>
     </div>
