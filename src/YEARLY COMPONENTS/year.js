@@ -21,13 +21,17 @@ const YearComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
   }
   for (let i = 0; i < expensesData.length; i++) {
     if (incomesData[i].year === year) {
-      let total =
-        parseInt(expensesData[i].fuel) +
-        parseInt(expensesData[i].movie) +
-        parseInt(expensesData[i].food) +
-        parseInt(expensesData[i].loan) +
-        parseInt(expensesData[i].medical) +
-        parseInt(expensesData[i].others);
+      const convertToNumber = (value) => {
+        return value ? Number(value) : 0;
+      };
+  
+      const total =
+        convertToNumber(expensesData[i].food) +
+        convertToNumber(expensesData[i].movie) +
+        convertToNumber(expensesData[i].fuel) +
+        convertToNumber(expensesData[i].loan) +
+        convertToNumber(expensesData[i].medical) +
+        convertToNumber(expensesData[i].others);
 
       totalexpense = totalexpense + parseInt(total);
     }
@@ -62,6 +66,7 @@ const YearComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
           }}
         >
           {incomesData.map((item, id) => {
+
             return (
               <div
                 key={id}
@@ -86,6 +91,17 @@ const YearComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
           }}
         >
           {expensesData.map((item, id) => {
+             const convertToNumber = (value) => {
+              return value ? Number(value) : 0;
+            };
+        
+            const Total =
+              convertToNumber(item.food) +
+              convertToNumber(item.movie) +
+              convertToNumber(item.fuel) +
+              convertToNumber(item.loan) +
+              convertToNumber(item.medical) +
+              convertToNumber(item.others);
             return (
               <div
                 key={id}
@@ -93,14 +109,7 @@ const YearComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
               >
                 {item.year === year && (
                   <Monthexpensecardcomponent
-                    Total={
-                      parseInt(item.fuel) +
-                      parseInt(item.movie) +
-                      parseInt(item.food) +
-                      parseInt(item.loan) +
-                      parseInt(item.medical) +
-                      parseInt(item.others)
-                    }
+                    Total={Total}
                     date={item.day + "/" + item.month + "/" +item.year}
                   />
                 )}

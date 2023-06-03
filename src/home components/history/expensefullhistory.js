@@ -20,13 +20,17 @@ const FullExpensesHistory = ({ expensesData }) => {
           </Typography>
 
           {expensesData.map((item, index) => {
+            const convertToNumber = (value) => {
+              return value ? Number(value) : 0;
+            };
+
             const Total =
-              parseInt(item.fuel) +
-              parseInt(item.movie) +
-              parseInt(item.food) +
-              parseInt(item.loan) +
-              parseInt(item.medical) +
-              parseInt(item.others);
+              convertToNumber(item?.food) +
+              convertToNumber(item?.movie) +
+              convertToNumber(item?.fuel) +
+              convertToNumber(item?.loan) +
+              convertToNumber(item?.medical) +
+              convertToNumber(item?.others);
 
             return (
               <div className="expensecard">

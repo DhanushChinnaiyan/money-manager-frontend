@@ -2,12 +2,13 @@
 .Links{
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 10px;
 }
 
 .Links>:nth-child(1),.Links>:nth-child(2){
     font-size: calc(10px + 0.4vw);
+    
 }
 
 

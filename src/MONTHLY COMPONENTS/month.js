@@ -21,13 +21,17 @@ const MonthComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
   }
   for (let i = 0; i < expensesData.length; i++) {
     if (expensesData[i].month === month) {
-      let total =
-        parseInt(expensesData[i].fuel) +
-        parseInt(expensesData[i].movie) +
-        parseInt(expensesData[i].food) +
-        parseInt(expensesData[i].loan) +
-        parseInt(expensesData[i].medical) +
-        parseInt(expensesData[i].others);
+      const convertToNumber = (value) => {
+        return value ? Number(value) : 0;
+      };
+
+      const total =
+        convertToNumber(expensesData[i].food) +
+        convertToNumber(expensesData[i].movie) +
+        convertToNumber(expensesData[i].fuel) +
+        convertToNumber(expensesData[i].loan) +
+        convertToNumber(expensesData[i].medical) +
+        convertToNumber(expensesData[i].others);
 
       totalexpense = totalexpense + parseInt(total);
     }
@@ -57,58 +61,68 @@ const MonthComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
       >
         <div
           style={{
+            flex:1,
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
             borderRight: "1px solid black",
           }}
         >
-          {incomesData.map((item, id) => {
-            return (
-              <div
-                key={id}
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                {item.month === month && (
-                  <Monthincomecardcomponent
-                    income={item.income}
-                    date={item.day + "/" + item.month + "/" +item.year}
-                  />
-                )}
-              </div>
-            );
-          })}
+          {console.log(incomesData)}
+          {incomesData.length > 0 &&
+            incomesData.map((item, id) => {
+              return (
+                <div
+                  key={id}
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  {item.month === month && (
+                    <Monthincomecardcomponent
+                      income={item.income}
+                      date={item.day + "/" + item.month + "/" + item.year}
+                    />
+                  )}
+                </div>
+              );
+            })}
         </div>
 
         <div
           style={{
+            flex:1,
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
           }}
         >
-          {expensesData.map((item, id) => {
-            return (
-              <div
-                key={id}
-                style={{ display: "flex", justifyContent: "center" }}
-              >
-                {item.month === month && (
-                  <Monthexpensecardcomponent
-                    Total={
-                      parseInt(item.fuel) +
-                      parseInt(item.movie) +
-                      parseInt(item.food) +
-                      parseInt(item.loan) +
-                      parseInt(item.medical) +
-                      parseInt(item.others)
-                    }
-                    date={item.day + "/" + item.month + "/" +item.year}
-                  />
-                )}
-              </div>
-            );
-          })}
+          {expensesData.length > 0 &&
+            expensesData.map((item, id) => {
+              const convertToNumber = (value) => {
+                return value ? Number(value) : 0;
+              };
+
+              const Total =
+                convertToNumber(item.food) +
+                convertToNumber(item.movie) +
+                convertToNumber(item.fuel) +
+                convertToNumber(item.loan) +
+                convertToNumber(item.medical) +
+                convertToNumber(item.others);
+
+              return (
+                <div
+                  key={id}
+                  style={{ display: "flex", justifyContent: "center" }}
+                >
+                  {item.month === month && (
+                    <Monthexpensecardcomponent
+                      Total={Total}
+                      date={item.day + "/" + item.month + "/" + item.year}
+                    />
+                  )}
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>
@@ -119,7 +133,7 @@ export default MonthComponent;
 
 const Monthincomecardcomponent = ({ income, date }) => {
   return (
-    <Card sx={{ maxWidth: 345, margin: "10px", padding: "10px" }}>
+    <Card sx={{ margin: "10px", padding: "10px",maxHeight:"70px" }}>
       <CardActionArea>
         <CardContent>
           <Typography variant="body2" color="green">
@@ -145,7 +159,7 @@ const Monthincomecardcomponent = ({ income, date }) => {
 
 const Monthexpensecardcomponent = ({ Total, date }) => {
   return (
-    <Card sx={{ maxWidth: 345, margin: "10px", padding: "10px" }}>
+    <Card sx={{ margin: "10px", padding: "10px",maxHeight:"70px"}}>
       <CardActionArea>
         <CardContent>
           <Typography variant="body2" color="red">

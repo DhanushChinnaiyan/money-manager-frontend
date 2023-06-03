@@ -10,12 +10,14 @@ const Incomepopup = ({
   newincome,
   setIncomepopup,
   setAddBtn,
-  setNewincome
+  setNewincome,
+  setOverAllLoading
 }) => {
   const handleclicked = () => {
     setIncomepopup(false);
     setAddBtn(true);
     setNewincome("");
+    setOverAllLoading(true)
   };
 console.log(newincome)
  

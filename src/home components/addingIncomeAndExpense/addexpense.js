@@ -1,5 +1,5 @@
-import React  from 'react';
-import { Button,TextField } from "@mui/material";
+import React, { useState }  from 'react';
+import { Button,CircularProgress,TextField } from "@mui/material";
 import {useFormik} from 'formik';
 import * as yup from 'yup';
 
@@ -19,7 +19,8 @@ export const expensevalidation = yup.object({
 
 const Addexpense = ({setAddBtn,setExpensepopup, setAddexpense,expensesData,setExpensesData,setNewexpense}) => {
 
-    // console.log(expensesData)
+//    loading state
+const [loading,setLoading] = useState(false)
     const {values,handleChange,handleSubmit,handleBlur,errors,touched} = useFormik({
           
 
@@ -34,6 +35,7 @@ const Addexpense = ({setAddBtn,setExpensepopup, setAddexpense,expensesData,setEx
 
         validationSchema : expensevalidation ,
         onSubmit : (newexpense)=>{
+            setLoading(true)
             addNewexpense(newexpense)
             setNewexpense(newexpense)
             // console.log(newexpense)
@@ -51,7 +53,8 @@ const Addexpense = ({setAddBtn,setExpensepopup, setAddexpense,expensesData,setEx
                 method:"POST",
                 body:JSON.stringify(newexpense),
                 headers : {
-                    "Content-Type" : "application/json"
+                    "Content-Type" : "application/json",
+                    "x-auth-user":localStorage.getItem("userToken")
                 }
             });
 
@@ -61,8 +64,9 @@ const Addexpense = ({setAddBtn,setExpensepopup, setAddexpense,expensesData,setEx
     
             setExpensepopup(true)
             setAddexpense(false)
-
+            setLoading(false)
         } catch (error) {
+            setLoading(false)
             console.log("Error Occure :" , error)
         }
     }
@@ -134,9 +138,11 @@ const Addexpense = ({setAddBtn,setExpensepopup, setAddexpense,expensesData,setEx
            variant="contained"
            type='submit'
            style={{margin:"20px 10px 10px 10px"}}
+           disabled={loading&&true}
+           sx={{width: "calc(140px + 1vw)"}}
            >
 
-            Add expense
+            {loading ? <CircularProgress color='success' size="calc(20px + 0.5vw)"/> : "Add expense"}
            </Button>
            <Button
         

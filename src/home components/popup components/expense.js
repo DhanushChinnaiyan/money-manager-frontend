@@ -11,20 +11,26 @@ const Expensepopup = ({
   setExpensepopup,
   setAddBtn,
   setNewexpense,
+  setOverAllLoading
 }) => {
   const handleclicked = () => {
     setExpensepopup(false);
     setAddBtn(true);
     setNewexpense([]);
+    setOverAllLoading(true)
   };
 
-  const Total =
-    parseInt(newexpenses.fuel) +
-    parseInt(newexpenses.movie) +
-    parseInt(newexpenses.food) +
-    parseInt(newexpenses.loan) +
-    parseInt(newexpenses.medical) +
-    parseInt(newexpenses.others);
+    const convertToNumber = (value) => {
+      return value ? Number(value) : 0;
+    };
+
+    const Total =
+      convertToNumber(newexpenses.food) +
+      convertToNumber(newexpenses.movie) +
+      convertToNumber(newexpenses.fuel) +
+      convertToNumber(newexpenses.loan) +
+      convertToNumber(newexpenses.medical) +
+      convertToNumber(newexpenses.others);
 
   return (
     <div className="popup">

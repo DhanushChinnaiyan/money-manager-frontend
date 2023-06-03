@@ -1,5 +1,5 @@
-import React  from 'react';
-import { Button,TextField } from "@mui/material";
+import React, { useState }  from 'react';
+import { Button,CircularProgress,TextField } from "@mui/material";
 import {useFormik} from 'formik';
 import * as yup from 'yup';
 
@@ -14,6 +14,8 @@ export const incomevalidation = yup.object({
 
 const AddIncome = ({setAddBtn,setNewincome, setAddincome,setIncomepopup,incomesData,setIncomesData}) => {
 
+    // loading state
+    const [loading,setLoading] = useState(false)
     // console.log(incomesData)
     const {values,handleChange,handleSubmit,handleBlur,errors,touched} = useFormik({
           
@@ -24,6 +26,7 @@ const AddIncome = ({setAddBtn,setNewincome, setAddincome,setIncomepopup,incomesD
 
         validationSchema : incomevalidation ,
         onSubmit : (newincome)=>{
+            setLoading(true)
             addNewincome(newincome)
             setNewincome(newincome.income)
            
@@ -41,18 +44,21 @@ const AddIncome = ({setAddBtn,setNewincome, setAddincome,setIncomepopup,incomesD
                 method:"POST",
                 body:JSON.stringify(newincome),
                 headers : {
-                    "Content-Type" : "application/json"
+                    "Content-Type" : "application/json",
+                    "x-auth-user":localStorage.getItem("userToken")
                 }
             });
 
             const data = await response.json();
             // console.log(data.data)
             setIncomesData([...incomesData,data.data])
-    
+            setLoading(false)
             setIncomepopup(true)
             setAddincome(false)
+            
 
         } catch (error) {
+            setLoading(false)
             console.log("Error Occure :" , error)
         }
     }
@@ -78,9 +84,11 @@ const AddIncome = ({setAddBtn,setNewincome, setAddincome,setIncomepopup,incomesD
            variant="contained"
            type='submit'
            style={{margin:"20px 10px 10px 10px"}}
+           disabled={loading&&true}
+           sx={{width: "calc(130px + 1vw)"}}
            >
 
-            Add income
+            {loading ? <CircularProgress color='success' size="calc(20px + 0.5vw)"/> : "Add income"}
            </Button>
            <Button
         
