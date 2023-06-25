@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
@@ -12,6 +12,10 @@ const FullExpensesHistory = ({
   setOverAllLoading,
   overAllLoading,
 }) => {
+
+  useEffect(()=>{
+    setOverAllLoading(true)
+  },[])
   return (
     <Base>
       <div className="expensehistoryCard">
