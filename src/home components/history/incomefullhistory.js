@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
@@ -12,18 +12,23 @@ const IncomeFullHistory = ({
   setOverAllLoading,
   overAllLoading,
 }) => {
-  useEffect(() => {
-    setOverAllLoading(true)
+
+  useEffect(() => {  
+      setOverAllLoading(true)
+
+ 
   },[]);
 
   // console.log(historyincomevalue)
+  
+
   return (
 
     <Base>
       <div className="incomehistoryCard">
         
         <Card>
-          <CardContent className={overAllLoading&&"loading"}>
+          <CardContent className={`${overAllLoading&&"loading"}`}>
             <Typography
               gutterBottom
               variant="h5"
@@ -38,15 +43,15 @@ const IncomeFullHistory = ({
       
               :
             
-            incomesData.map((item, index) => {
+              incomesData.map((item, index) => {
               return (
-                <CardActions key={index}>
-                  <Typography>
+                <CardActions key={index} sx={{display:"flex"}}>
+                  <Typography style={{flex:4,fontSize:"calc(10px + 0.3vw)"}}>
                     {index + 1}. INCOME : {item.income} .RS
                   </Typography>
                   <Typography
                     color="grey"
-                    style={{ fontSize: "14px", marginLeft: "calc(10px + 3vw)" }}
+                    style={{ flex:1,fontSize: "calc(8px + 0.3vw)", marginLeft: "calc(10px + 3vw)" }}
                   >
                     {item.day + "/" + item.month + "/" + item.year}
                   </Typography>
@@ -55,6 +60,7 @@ const IncomeFullHistory = ({
                       fontSize: "calc(7px + 0.5vw)",
                       color: "grey",
                       marginLeft: "calc(10px + 3vw)",
+                      flex:1
                     }}
                     datetime={item.date}
                     locale="vi"

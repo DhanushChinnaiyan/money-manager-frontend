@@ -12,18 +12,18 @@ const IncomeHistory = ({ incomesData, expensesData }) => {
   let incomevalue;
   const historyincomevalue = [];
   incomesData.length > 5
-    ? (incomevalue = incomesData.length - 5)
-    : (incomevalue = 0);
-  for (let index = incomesData.length - 1; index >= incomevalue; index--) {
+    ? (incomevalue = 5)
+    : (incomevalue = incomesData.length);
+  for (let index = 0; index < incomevalue; index++) {
     historyincomevalue.push(incomesData[index]);
   }
 
   let expensevalue;
   const historyexpensevalue = [];
   expensesData.length > 5
-    ? (expensevalue = expensesData.length - 5)
-    : (expensevalue = 0);
-  for (let index = expensesData.length - 1; index >= expensevalue; index--) {
+    ? (expensevalue = 5)
+    : (expensevalue = expensesData.length);
+  for (let index = 0; index < expensevalue; index++) {
     historyexpensevalue.push(expensesData[index]);
   }
   // console.log(historyincomevalue)

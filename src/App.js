@@ -53,7 +53,8 @@ function App() {
           }
         );
         const data = await response.json();
-        data.data && setIncomesData(data.data);
+        const incomes = data.data.reverse()
+        data.data && setIncomesData(incomes);
       } catch (error) {
         console.log("Error Occure", error);
       }
@@ -71,7 +72,8 @@ function App() {
           }
         );
         const data = await response.json();
-        data.data && setExpensesData(data.data);
+        const expenses = data.data.reverse()
+        data.data && setExpensesData(expenses);
         // turn off overAllLoading
         setOverAllLoading(false)
       } catch (error) {

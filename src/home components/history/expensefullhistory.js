@@ -30,7 +30,8 @@ const FullExpensesHistory = ({
               EXPENSES HISTORY
             </Typography>
 
-            {overAllLoading ? (
+           <div className="expenses">
+           {overAllLoading ? (
               <CircularProgress color="success" size="calc(20px + 2vw)" />
             ) : (
               expensesData.map((item, index) => {
@@ -50,36 +51,40 @@ const FullExpensesHistory = ({
                   <div className="expensecard">
                     <CardActions
                       key={index}
-                      sx={{ display: "flex", justifyContent: "center" }}
+                      sx={{ display: "flex" }}
                     >
-                      <Typography>
+                      <Typography style={{fontSize:"calc(10px + 0.5vw)"}}>
                         {index + 1}. Total Expense : {Total} .RS
                       </Typography>
-                      <Typography color="grey" style={{ fontSize: "14px" }}>
+                      <Typography color="grey" style={{ fontSize: "calc(10px + 0.5vw)" }}>
                         {item.day + "/" + item.month + "/" + item.year}
                       </Typography>
                       <TimeAgo
                         style={{
-                          fontSize: "calc(7px + 0.3vw)",
+                          fontSize: "calc(5px + 0.5vw)",
                           color: "grey",
                           marginLeft: "15px",
+                        
                         }}
                         datetime={item.date}
                         locale="vi"
                       />
                     </CardActions>
                     <div className="expensecardbody">
-                      <div>Fuel Expense : {item.fuel}</div>
-                      <div>Movie Expense : {item.movie}</div>
-                      <div>Food Expense : {item.food}</div>
-                      <div>Loan Expense : {item.loan}</div>
-                      <div>Medical Expense : {item.medical}</div>
-                      <div>Others Expense : {item.others}</div>
+                      <ul>
+                      <li>Fuel Expense : {item.fuel}</li>
+                      <li>Movie Expense : {item.movie}</li>
+                      <li>Food Expense : {item.food}</li>
+                      <li>Loan Expense : {item.loan}</li>
+                      <li>Medical Expense : {item.medical}</li>
+                      <li>Others Expense : {item.others}</li>
+                      </ul>
                     </div>
                   </div>
                 );
               })
             )}
+           </div>
           </CardContent>
         </Card>
       </div>
