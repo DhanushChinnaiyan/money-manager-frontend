@@ -40,20 +40,24 @@ const IncomeHistory = ({ incomesData, expensesData }) => {
           return (
             <CardActions
               key={index}
-              sx={{ display: "flex" }}
+              sx={{ display: "flex",justifyContent:"space-evenly",width:"100%" }}
             >
-              <Typography style={{ fontSize: "calc(9px + 0.5vw)" }}>
-                Income : {item?.income} .RS
-              </Typography>
+             
+               <Typography style={{flex:3,fontSize: "calc(5px + 1vw)"}}>
+               Income : {item?.income} .RS
+               </Typography>
+              
               <TimeAgo
                 style={{
-                  fontSize: "calc(7px + 0.3vw)",
+                  fontSize: "calc(5px + 0.5vw)",
                   color: "grey",
                   marginLeft: "7px",
+                  flex:1
                 }}
                 datetime={item.date}
                 locale="vi"
               />
+             
             </CardActions>
           );
         })}
@@ -89,20 +93,23 @@ const IncomeHistory = ({ incomesData, expensesData }) => {
             return (
               <CardActions
                 key={index}
-                sx={{ display: "flex" }}
+                sx={{ display: "flex",justifyContent:"space-evenly",width:"100%" }}
               >
-                <Typography style={{ fontSize: "calc(9px + 0.5vw)" }}>
+
+               <Typography style={{flex:3,fontSize: "calc(5px + 1vw)"}}>
                   Expense : {Total} .RS
                 </Typography>
                 <TimeAgo
                   style={{
-                    fontSize: "calc(7px + 0.3vw)",
+                    fontSize: "calc(5px + 0.5vw)",
                     color: "grey",
                     marginLeft: "7px",
+                    flex:1
                   }}
                   datetime={item.date}
                   locale="vi"
                 />
+            
               </CardActions>
             );
           })}

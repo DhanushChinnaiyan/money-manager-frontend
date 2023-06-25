@@ -7,7 +7,7 @@ import FullExpensesHistory from "./home components/history/expensefullhistory";
 import Signup from "./UserEntry/Signup.jsx";
 import ForgotPassword from "./UserEntry/Forgot-Password.jsx";
 import { SnackbarProvider, enqueueSnackbar } from "notistack";
-import {decodeToken} from 'react-jwt'
+import { decodeToken } from "react-jwt";
 import Login from "./UserEntry/LoginComponent.jsx";
 import { CircularProgress } from "@mui/material";
 
@@ -17,27 +17,27 @@ function App() {
   const [dummy, setDummy] = useState(false);
 
   // snak bar
-  const handleMessage = (message,variant) => {
-    enqueueSnackbar(message,{variant})
-  }
+  const handleMessage = (message, variant) => {
+    enqueueSnackbar(message, { variant });
+  };
 
-   // overAllLoading state
-   const [overAllLoading,setOverAllLoading] = useState(true)
+  // overAllLoading state
+  const [overAllLoading, setOverAllLoading] = useState(true);
 
-  const history = useHistory()
- 
-   // checking if user is already logedIn
-   useEffect(()=>{
-    const token = localStorage.getItem("userToken")
-    if(token){
+  const history = useHistory();
+
+  // checking if user is already logedIn
+  useEffect(() => {
+    const token = localStorage.getItem("userToken");
+    if (token) {
       // verifying user token
-      const user = decodeToken(token)
-      if(!user){
-        localStorage.removeItem("userToken")
-        history.replace("/login")
+      const user = decodeToken(token);
+      if (!user) {
+        localStorage.removeItem("userToken");
+        history.replace("/login");
       }
     }
-},[])
+  }, []);
 
   useEffect(() => {
   
@@ -83,44 +83,49 @@ function App() {
   }, [overAllLoading]);
 
   return (
-    <SnackbarProvider anchorOrigin={{vertical:"bottom",horizontal:"right"}} maxSnack={3}>
-     {
-      overAllLoading ? 
-      <div style={{display:"flex",justifyContent:"center",paddingTop:"20vh"}}>
-        <CircularProgress/>
-      </div>
-      : 
+    <SnackbarProvider
+      anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      maxSnack={3}
+    >
       <div className="App">
-      <Switch>
-        <Route exact path="/">
-          <HomeComponents
-            incomesData={incomesData}
-            setIncomesData={setIncomesData}
-            expensesData={expensesData}
-            setExpensesData={setExpensesData}
-            setOverAllLoading={setOverAllLoading}
-            dummy={dummy}
-            setDummy={setDummy}
-          />
-        </Route>
-        <Route path="/incomehistory">
-          <IncomeFullHistory incomesData={incomesData} />
-        </Route>
-        <Route path="/expensehistory">
-          <FullExpensesHistory expensesData={expensesData} />
-        </Route>
-        <Route path="/signup">
-          <Signup handleMessage={handleMessage}/>
-        </Route>
-        <Route path="/login">
-          <Login handleMessage={handleMessage}/>
-        </Route>
-        <Route path="/forgotpassword">
-          <ForgotPassword handleMessage={handleMessage}/>
-        </Route>
-      </Switch>
-    </div>
-     }
+        <Switch>
+          <Route exact path="/">
+            <HomeComponents
+              incomesData={incomesData}
+              setIncomesData={setIncomesData}
+              expensesData={expensesData}
+              setExpensesData={setExpensesData}
+              overAllLoading={overAllLoading}
+              setOverAllLoading={setOverAllLoading}
+              dummy={dummy}
+              setDummy={setDummy}
+            />
+          </Route>
+          <Route path="/incomehistory">
+            <IncomeFullHistory
+              incomesData={incomesData}
+              overAllLoading={overAllLoading}
+              setOverAllLoading={setOverAllLoading}
+            />
+          </Route>
+          <Route path="/expensehistory">
+            <FullExpensesHistory
+              expensesData={expensesData}
+              overAllLoading={overAllLoading}
+              setOverAllLoading={setOverAllLoading}
+            />
+          </Route>
+          <Route path="/signup">
+            <Signup handleMessage={handleMessage} />
+          </Route>
+          <Route path="/login">
+            <Login handleMessage={handleMessage} />
+          </Route>
+          <Route path="/forgotpassword">
+            <ForgotPassword handleMessage={handleMessage} />
+          </Route>
+        </Switch>
+      </div>
     </SnackbarProvider>
   );
 }

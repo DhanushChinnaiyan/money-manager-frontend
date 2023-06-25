@@ -5,7 +5,7 @@ import YearComponent from "../YEARLY COMPONENTS/year";
 import ToggleButton from "@mui/material/ToggleButton";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { useState } from "react";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import AddIncome from "./addingIncomeAndExpense/addincome";
 import Addexpense from "./addingIncomeAndExpense/addexpense";
 import Expensepopup from "./popup components/expense";
@@ -22,7 +22,8 @@ const HomeComponents = ({
   setIncomesData,
   expensesData,
   setExpensesData,
-  setOverAllLoading
+  setOverAllLoading,
+  overAllLoading
 }) => {
   //  States
   const [newexpenses, setNewexpense] = useState([]);
@@ -33,13 +34,12 @@ const HomeComponents = ({
   const [incomepopup, setIncomepopup] = useState(false);
   const [addexpense, setAddexpense] = useState(false);
   const [alignment, setAlignment] = useState("week");
-
-
   const history = useHistory()
 
 
   // checking if user is already logedIn
   useEffect(() => {
+    setOverAllLoading(true)
     const token = localStorage.getItem("userToken");
     if (!token) {
       history.replace("/login");
@@ -65,7 +65,11 @@ const HomeComponents = ({
     setAddBtn(false);
   };
   return (
-    <div className="App">
+    <div className={overAllLoading?"App loading" : "App"}>
+      {
+overAllLoading? <CircularProgress color='success' size="calc(20px + 2vw)"/> :
+
+    
       <Base dashChange="month">
         {addBtn && (
           <div className="homeBtns">
@@ -192,6 +196,7 @@ const HomeComponents = ({
         </div>
       }
       </Base>
+}
     </div>
   );
 };

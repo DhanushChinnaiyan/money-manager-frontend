@@ -1,49 +1,73 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { Card } from "@mui/material";
+import { Card, CircularProgress } from "@mui/material";
 import TimeAgo from "timeago-react";
 import { Base } from "../../BASE/base";
 
-const IncomeFullHistory = ({ incomesData}) => {
-
-  
+const IncomeFullHistory = ({
+  incomesData,
+  setOverAllLoading,
+  overAllLoading,
+}) => {
+  useEffect(() => {
+    setOverAllLoading(true)
+  },[]);
 
   // console.log(historyincomevalue)
   return (
-    <Base>
-   
-    <div className="incomehistoryCard">
-      <Card >
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div" style={{textAlign:"center"}}>
-            INCOMES HISTORY
-          </Typography>
 
-          {incomesData.map((item, index) => {
-            return (
-              <CardActions
-                key={index}
-                
-              >
-                <Typography >
-                 {index+1}. INCOME : {item.income} .RS
-                </Typography>
-                <Typography color="grey" style={{fontSize:"14px" ,marginLeft:"calc(10px + 3vw)"}}>
-                 {item.day + "/" + item.month + "/" + item.year}
-                </Typography>
-                <TimeAgo style={{fontSize:"calc(7px + 0.5vw)",color:"grey",marginLeft:"calc(10px + 3vw)"}} datetime={item.date} locale="vi" />
-                
-              </CardActions>
-            );
-          })}
-        </CardContent>
+    <Base>
+      <div className="incomehistoryCard">
         
-      </Card>
-    </div>
+        <Card>
+          <CardContent className={overAllLoading&&"loading"}>
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              style={{ textAlign: "center" }}
+            >
+              INCOMES HISTORY
+            </Typography>
+
+            {
+              overAllLoading? <CircularProgress color='success' size="calc(20px + 2vw)"/>
+      
+              :
+            
+            incomesData.map((item, index) => {
+              return (
+                <CardActions key={index}>
+                  <Typography>
+                    {index + 1}. INCOME : {item.income} .RS
+                  </Typography>
+                  <Typography
+                    color="grey"
+                    style={{ fontSize: "14px", marginLeft: "calc(10px + 3vw)" }}
+                  >
+                    {item.day + "/" + item.month + "/" + item.year}
+                  </Typography>
+                  <TimeAgo
+                    style={{
+                      fontSize: "calc(7px + 0.5vw)",
+                      color: "grey",
+                      marginLeft: "calc(10px + 3vw)",
+                    }}
+                    datetime={item.date}
+                    locale="vi"
+                  />
+                </CardActions>
+              );
+            })}
+          </CardContent>
+        </Card>
+
+      </div>
     </Base>
+          
   );
 };
 

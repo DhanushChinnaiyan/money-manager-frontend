@@ -49,7 +49,7 @@ const [loading,setLoading] = useState(false)
 
         try {
      
-            const response = await fetch("https://money-manager-backend-git-master-dhanushchinnaiyan.vercel.app/expense/add",{
+            const response = await fetch("https://money-manager-41h8.onrender.com/expense/add",{
                 method:"POST",
                 body:JSON.stringify(newexpense),
                 headers : {

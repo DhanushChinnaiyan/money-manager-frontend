@@ -30,8 +30,8 @@ const Login = ({ handleMessage }) => {
   // validate and login method using formik
   const { values, handleSubmit, handleBlur, handleChange, touched, errors } = useFormik({
     initialValues: {
-      email: "",
-      password: ""
+      email: "dhanushmd4021@gmail.com",
+      password: "Password@123"
     },
     validationSchema: userValidation,
     onSubmit: (userDetails) => {
@@ -82,8 +82,7 @@ const Login = ({ handleMessage }) => {
         onSubmit={handleSubmit}
         className='loginInputDiv'
       >
-        <Typography sx={{width:"90%",color:"green",fontWeight:"bold"}}>Email : dhanushmd4021@gmail.com</Typography>
-        <Typography sx={{width:"90%",color:"green",fontWeight:"bold"}}>Password : Password@123</Typography>
+
         <TextField
           required
           id="outlined-email-input"

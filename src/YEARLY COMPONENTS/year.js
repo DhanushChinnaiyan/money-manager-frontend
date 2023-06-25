@@ -53,8 +53,10 @@ const YearComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
         style={{
           display: "flex",
           justifyContent: "center",
-          borderTop: "1px solid black",
-          marginTop: "10px",
+          margin: "20px 10px 30px 10px",
+          padding: "10px",
+          borderRadius: "10px",
+          boxShadow: "0 0 10px grey",
         }}
       >
         <div
@@ -63,6 +65,7 @@ const YearComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
             flexWrap: "wrap",
             justifyContent: "center",
             borderRight: "1px solid black",
+            flex:1
           }}
         >
           {incomesData.map((item, id) => {
@@ -88,6 +91,7 @@ const YearComponent = ({ setDummy, dummy, incomesData, expensesData }) => {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
+            flex:1
           }}
         >
           {expensesData.map((item, id) => {
