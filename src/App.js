@@ -53,8 +53,7 @@ function App() {
           }
         );
         const data = await response.json();
-        const incomes = data.data.reverse()
-        data.data && setIncomesData(incomes);
+        data.data && setIncomesData(data.data.reverse());
       } catch (error) {
         console.log("Error Occure", error);
       }
@@ -72,8 +71,7 @@ function App() {
           }
         );
         const data = await response.json();
-        const expenses = data.data.reverse()
-        data.data && setExpensesData(expenses);
+        data.data && setExpensesData(data.data.reverse());
         // turn off overAllLoading
         setOverAllLoading(false)
       } catch (error) {
@@ -121,7 +119,11 @@ function App() {
             <Signup handleMessage={handleMessage} />
           </Route>
           <Route path="/login">
-            <Login handleMessage={handleMessage} />
+            <Login handleMessage={handleMessage} 
+            overAllLoading={overAllLoading}
+            setOverAllLoading={setOverAllLoading}
+            />
+            
           </Route>
           <Route path="/forgotpassword">
             <ForgotPassword handleMessage={handleMessage} />

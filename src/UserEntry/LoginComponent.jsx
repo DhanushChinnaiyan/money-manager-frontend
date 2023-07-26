@@ -9,7 +9,7 @@ import * as yup from 'yup'
 import { useHistory } from 'react-router-dom';
 
 
-const Login = ({ handleMessage }) => {
+const Login = ({ handleMessage,overAllLoading, setOverAllLoading }) => {
   const history = useHistory()
   const [showPassword, setShowPassword] = useState(false);
   // Loading state
@@ -57,6 +57,7 @@ const Login = ({ handleMessage }) => {
         handleMessage(data.message, "success")
         localStorage.setItem("userToken", data.Token)
         history.replace("/")
+        setOverAllLoading(true)
 
       } else {
         handleMessage(data.message, "error")
