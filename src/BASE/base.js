@@ -22,7 +22,7 @@ export const Base = ({children}) => {
         <Toolbar variant="dense" style={{display:"flex",justifyContent:"center"}} >
         
           <Typography onMouseOver={(event)=>{event.target.style.cursor='pointer'}} sx={{textAlign:"center"}} variant="h6" color="inherit" component="div" onClick={()=>history.push("/")}>
-            MONEY MANAGER
+           Money Tracker Pro
           </Typography>
          <Typography component="div" sx={{display:"flex",justifyContent:"flex-end",position:"absolute",right:10}}> <Button onClick={logoutFunction} sx={{fontWeight:"bold"}} color="inherit">LOGOUT</Button></Typography>
         </Toolbar>
